@@ -9,7 +9,7 @@ async def root():
     """Root
 
     Returns:
-        json: Response
+        json: Hello World
     """
     return {"message": "Hello World"}
 
@@ -22,7 +22,7 @@ async def read_item(item_id: int):
         item_id (int): Item ID
 
     Returns:
-        json: Response
+        json: Item ID
     """
     return {"item_id": item_id}
 
@@ -32,7 +32,7 @@ async def read_user_me():
     """Read user me
 
     Returns:
-        json: Response
+        json: User ID
     """
     return {"user_id": "the current user"}
 
@@ -45,6 +45,6 @@ async def read_user(user_id: int):
         user_id (int): User ID
 
     Returns:
-        json: Response
+        json: User ID
     """
     return {"user_id": user_id}
