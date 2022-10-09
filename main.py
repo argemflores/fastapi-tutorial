@@ -25,3 +25,26 @@ async def read_item(item_id: int):
         json: Response
     """
     return {"item_id": item_id}
+
+
+@app.get("/users/me")
+async def read_user_me():
+    """Read user me
+
+    Returns:
+        json: Response
+    """
+    return {"user_id": "the current user"}
+
+
+@app.get("/users/{user_id}")
+async def read_user(user_id: int):
+    """Read user
+
+    Args:
+        user_id (int): User ID
+
+    Returns:
+        json: Response
+    """
+    return {"user_id": user_id}
