@@ -73,3 +73,16 @@ async def get_model(model_name: ModelName):
         return {"model_name": model_name, "message": "LeCNN all the images"}
 
     return {"model_name": model_name, "message": "Have some residuals"}
+
+
+@app.get("/files/{file_path:path}")
+async def read_file(file_path: str):
+    """Read file
+
+    Args:
+        file_path (str): File path
+
+    Returns:
+        json: File path
+    """
+    return {"file_path": file_path}
