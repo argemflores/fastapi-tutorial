@@ -1,5 +1,6 @@
 """Imports"""
 from enum import Enum
+from typing import Union
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -26,17 +27,17 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.get("/items/{item_id}")
-async def read_item(item_id: int):
-    """Read item
+# @app.get("/items/{item_id}")
+# async def read_item(item_id: int):
+#     """Read item
 
-    Args:
-        item_id (int): Item ID
+#     Args:
+#         item_id (int): Item ID
 
-    Returns:
-        json: Item ID
-    """
-    return {"item_id": item_id}
+#     Returns:
+#         json: Item ID
+#     """
+#     return {"item_id": item_id}
 
 
 @app.get("/users/me")
@@ -109,3 +110,19 @@ async def read_fake_item(skip: int = 0, limit: int = 10):
         json: Fake item
     """
     return fake_items_db[skip : skip + limit]
+
+
+@app.get("/items/{item_id}")
+async def read_default_item(item_id: str, q: Union[str, None] = None):
+    """Read default item
+
+    Args:
+        item_id (str): Item ID
+        q (str, optional): Query parameter. Defaults to None.
+
+    Returns:
+        json: Item ID
+    """
+    if q:
+        return {"item_id": item_id, "q": q}
+    return {"item_id": item_id}
