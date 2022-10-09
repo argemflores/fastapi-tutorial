@@ -113,16 +113,22 @@ async def read_fake_item(skip: int = 0, limit: int = 10):
 
 
 @app.get("/items/{item_id}")
-async def read_default_item(item_id: str, q: Union[str, None] = None):
-    """Read default item
+async def read_item(item_id: str, q: Union[str, None] = None, short: bool = False):
+    """Read item
 
     Args:
-        item_id (str): Item ID
+        item_id (str): Item
         q (str, optional): Query parameter. Defaults to None.
+        short (bool, optional): Short. Defaults to False.
 
     Returns:
         json: Item ID
     """
+    item = {"item_id": item_id}
     if q:
-        return {"item_id": item_id, "q": q}
-    return {"item_id": item_id}
+        item.update({"q": q})
+    if not short:
+        item.update(
+            {"description": "This is an amazing item that has a long description"}
+        )
+    return item
