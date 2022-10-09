@@ -15,11 +15,11 @@ async def root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id):
+async def read_item(item_id: int):
     """Read item
 
     Args:
-        item_id (str): Item ID
+        item_id (int): Item ID
 
     Returns:
         json: Response
