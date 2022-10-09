@@ -1,13 +1,19 @@
 """Imports"""
-from fastapi import FastAPI
 from enum import Enum
+from fastapi import FastAPI
 
 app = FastAPI()
 
 class ModelName(str, Enum):
-    alexnet = "alexnet"
-    resnet = "resnet"
-    lenet = "lenet"
+    """Model
+
+    Args:
+        str (name): Name
+        Enum (Enum): Enumeration
+    """
+    ALEXNET = "alexnet"
+    RESNET = "resnet"
+    LENET = "lenet"
 
 
 @app.get("/")
@@ -66,7 +72,7 @@ async def get_model(model_name: ModelName):
     Returns:
         json: Model
     """
-    if model_name is ModelName.alexnet:
+    if model_name is ModelName.ALEXNET:
         return {"model_name": model_name, "message": "Deep Learning FTW!"}
 
     if model_name.value == "lenet":
