@@ -92,3 +92,20 @@ async def read_file(file_path: str):
         json: File path
     """
     return {"file_path": file_path}
+
+
+fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
+
+
+@app.get("/items/")
+async def read_fake_item(skip: int = 0, limit: int = 10):
+    """Read fake item
+
+    Args:
+        skip (int, optional): Skip index. Defaults to 0.
+        limit (int, optional): Limit number. Defaults to 10.
+
+    Returns:
+        json: Fake item
+    """
+    return fake_items_db[skip : skip + limit]
